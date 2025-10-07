@@ -24,6 +24,15 @@ export const apiGet = async (endpoint) => {
     return await axios.get(`${BASE_URL}${endpoint}`, { headers });
 };
 
+export const apiGetNoToken = async (endpoint) => {
+    const { token, BASE_URL } = getTokenAndBaseUrl();
+
+    const headers = {
+        'Content-Type': 'application/json',
+    };
+    return await axios.get(`${BASE_URL}${endpoint}`, { headers });
+};
+
 
 export const apiPost = async (endpoint, data) => {
     const { token, BASE_URL } = getTokenAndBaseUrl();

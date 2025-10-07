@@ -24,7 +24,7 @@ const Navbar = () => {
                 <div className="hidden md:flex items-center space-x-8">
                     <Link to="/" className="text-lg">Home</Link>
                     <div className="relative group inline-block text-left">
-                        <div className="flex items-center cursor-pointer text-lg">
+                        <div className="flex items-center cursor-pointer text-lg" onClick={() => navigate('/products')}>
                             <span>Products</span>
                             <FaChevronDown className="ml-1 text-sm" />
                         </div>

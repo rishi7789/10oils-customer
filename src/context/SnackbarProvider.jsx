@@ -41,7 +41,7 @@ export const SnackbarProvider = ({ children }) => {
             {children}
 
             {snack && (
-                <div className="fixed bottom-5 right-5 z-50">
+                <div className="fixed top-5 right-5 z-50">
                     <div className={`flex items-center gap-2 px-4 py-2 border rounded shadow-md ${styles[snack.type]}`}>
                         {icons[snack.type]}
                         <span className="text-sm">{snack.message}</span>
