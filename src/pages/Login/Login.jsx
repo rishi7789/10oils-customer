@@ -93,7 +93,7 @@ const Login = () => {
 
             if (response.data.status === 200) {
                 snackbar(response.data.message, 'success');
-                login(response.data.data.id, response.data.token);
+                login(response.data.data._id, response.data.token);
                 setSignInData({ email: "", password: "" });
                 navigate('/');
             } else {

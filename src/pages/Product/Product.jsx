@@ -4,6 +4,7 @@ import { snackbar } from "../../context/SnackbarProvider";
 import { useAuth } from "../../context/AuthContext";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import { useCart } from "../../context/CartContext";
 
 const Product = () => {
     const [products, setProducts] = useState([]);
@@ -56,8 +57,21 @@ const Product = () => {
         // Continue with buy logic...
     };
 
-    const handleAddToCart = () => {
-        // Implement add to cart logic
+    const { addToCart } = useCart();
+
+    const handleAddToCart = (product) => {
+        if (!token) {
+            snackbar("Login first to add to cart", "error");
+            return;
+        }
+
+        if (product.stock <= 0) {
+            snackbar("Out of Stock", "error");
+            return;
+        }
+
+        addToCart(product);
+        snackbar("Added to cart", "success");
     };
 
     const handleCategoryChange = (e) => {
@@ -109,16 +123,19 @@ const Product = () => {
                 </div>
 
                 {/* Product Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 w-150 sm:grid-cols-2 gap-6">
                     {currentProducts.map((product, index) => (
                         <div
                             key={index}
-                            className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-4 flex flex-col items-center text-center"
+                            className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-2 flex flex-col items-center text-center"
                         >
                             <img
-                                src={product.images[0]}
-                                alt='image'
-                                className="w-full h-48 object-cover rounded"
+                                src={product.images[0].replace(
+                                    "https://gvcc-test-bucket.8edf79e3d9388dbe6f1b6f57f15731b6.r2.cloudflarestorage.com", //this is private url
+                                    "https://pub-61ad9d5d30f1469183ed72e08040b631.r2.dev" //this is public url
+                                )}
+                                alt="product"
+                                className="h-38"
                             />
                             <h3 className="mt-4 font-semibold text-lg">
                                 {product.name}
@@ -134,12 +151,12 @@ const Product = () => {
                             <div className="mt-4 flex gap-2 w-full">
                                 <button
                                     onClick={handleBuyNow}
-                                    className="bg-orange-500 hover:bg-orange-600 text-white text-sm px-3 py-2 rounded flex-1"
+                                    className="bg-orange-500 hover:bg-orange-600  text-white text-sm px-3 py-2 rounded flex-1"
                                 >
                                     Buy Now
                                 </button>
                                 <button
-                                    onClick={handleAddToCart}
+                                    onClick={() => handleAddToCart(product)}
                                     className="bg-orange-500 hover:bg-orange-600 text-white text-sm px-3 py-2 rounded flex-1"
                                 >
                                     Add to Cart
@@ -157,8 +174,8 @@ const Product = () => {
                                 key={page}
                                 onClick={() => handlePageChange(page)}
                                 className={`px-3 py-1 rounded ${currentPage === page
-                                        ? "bg-orange-500 text-white"
-                                        : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                                    ? "bg-orange-500 text-white"
+                                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                                     }`}
                             >
                                 {page}

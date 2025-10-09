@@ -1,14 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaCartPlus, FaChevronDown } from "react-icons/fa";
 import logo from '../assets/random-logo.jpg'
 import { IoIosMenu } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { apiGet } from "../api/axios";
+import { snackbar } from "../context/SnackbarProvider";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false); // For hamburger menu
     const [cartValue, setCartValue] = useState(0); // Cart item count (this could be dynamic)
     const navigate = useNavigate();
+
+    const { token } = useAuth();
+
+
+    const [user, setUser] = useState([]);
+
+    const getUser = async () => {
+        try {
+            const response = await apiGet('/getUser');
+
+            if (response.data.status === 200) {
+                setUser(response.data.data);
+            } else {
+                snackbar(response.data.message, 'error');
+            }
+        } catch (error) {
+            snackbar("Failed to fetch user", 'error');
+        }
+    }
+
+    useEffect(() => {
+        if (token) {
+            getUser();
+        }
+    }, [token]);
+
+    console.log("user", user);
+
+
 
     const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -42,11 +74,21 @@ const Navbar = () => {
 
                 {/* Right-side Sign-in/Signup and Cart */}
                 <div className="hidden md:flex items-center space-x-6">
-                    <div className="flex items-center space-x-2 cursor-pointer" onClick={() => navigate('/login')}>
-                        <div className="h-8 w-8 bg-orange-500 rounded-full flex items-center justify-center text-white">A</div>
-                        <div className="text-sm">Login</div>
-                    </div>
-                    <div className="flex items-center space-x-1">
+                    {
+                        token ? (
+                            <div className="flex items-center space-x-2 cursor-pointer" onClick={() => navigate('/profile')}>
+
+                                <div className="text-sm">{`welcome ${user.username}!`}</div>
+                            </div>
+                        ) : (
+                            <button className="bg-orange-500 hover:bg-orange-600 text-white px-3 py-1 cursor-pointer rounded" onClick={() => navigate('/login')}>
+                                Sign up
+                            </button>
+                        )
+
+                    }
+
+                    <div className="flex items-center space-x-1 cursor-pointer" onClick={() => navigate('/cart')}>
                         <div className="relative">
                             <FaCartPlus className="text-2xl" />
                         </div>
