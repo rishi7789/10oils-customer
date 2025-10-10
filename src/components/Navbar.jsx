@@ -15,6 +15,9 @@ const Navbar = () => {
 
     const { token } = useAuth();
 
+    console.log("token in navbar", token);
+
+
 
     const [user, setUser] = useState([]);
 

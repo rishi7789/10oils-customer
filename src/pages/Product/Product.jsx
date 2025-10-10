@@ -60,10 +60,6 @@ const Product = () => {
     const { addToCart } = useCart();
 
     const handleAddToCart = (product) => {
-        if (!token) {
-            snackbar("Login first to add to cart", "error");
-            return;
-        }
 
         if (product.stock <= 0) {
             snackbar("Out of Stock", "error");

@@ -3,9 +3,22 @@ import { useCart } from "../../context/CartContext";
 import { FaTrash } from "react-icons/fa";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import { snackbar } from "../../context/SnackbarProvider";
 
 const Cart = () => {
     const { cartItems, removeFromCart, updateQuantity, totalAmount } = useCart();
+    const navigate = useNavigate();
+    const { token } = useAuth();
+
+    const handleCheckout = () => {
+        if (!token) {
+            snackbar("Please login to checkout", 'error');
+            return;
+        }
+        navigate("/order");
+    };
 
 
     //for add,update,delete,get cart we can do from backend so that to avoid storing cart items to localstorage(bcz when logout and logs in or page refreshes then cart items should be visible for that user)
@@ -71,7 +84,7 @@ const Cart = () => {
 
                         <div className="flex justify-between items-center border-t pt-4 mt-4">
                             <p className="text-xl font-semibold">Total: ₹{totalAmount}</p>
-                            <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded">
+                            <button onClick={handleCheckout} className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded">
                                 Checkout
                             </button>
                         </div>
