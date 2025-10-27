@@ -2,6 +2,7 @@ import Navbar from "../../components/Navbar";
 import { useRef, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Footer from "../../components/Footer";
+import { useNavigate } from "react-router-dom";
 
 // Import images
 import carousel1 from '../../assets/carousel1.jpg';
@@ -15,6 +16,7 @@ import tools from "../../assets/tools.jpg";
 
 const Home = () => {
     const testimonialsRef = useRef(null);
+    const navigate = useNavigate();
 
     const scrollTestimonials = (direction) => {
         if (testimonialsRef.current) {
@@ -64,7 +66,7 @@ const Home = () => {
 
 
                 <div className="absolute inset-0 flex items-center justify-center z-10">
-                    <button className="bg-orange-500 text-white px-6 py-2 rounded font-semibold">
+                    <button onClick={() => navigate('/products')} className="bg-orange-500 text-white px-6 py-2 rounded font-semibold cursor-pointer">
                         Explore Products
                     </button>
                 </div>
