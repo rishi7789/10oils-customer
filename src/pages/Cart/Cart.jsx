@@ -84,7 +84,7 @@ const Cart = () => {
 
                         <div className="flex justify-between items-center border-t pt-4 mt-4">
                             <p className="text-xl font-semibold">Total: ₹{totalAmount}</p>
-                            <button onClick={handleCheckout} className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded">
+                            <button onClick={handleCheckout} className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded cursor-pointer">
                                 Checkout
                             </button>
                         </div>
