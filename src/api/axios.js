@@ -8,9 +8,6 @@ const getTokenAndBaseUrl = () => {
     return { token, BASE_URL };
 };
 
-
-// const BASE_URL = 'http://13.235.91.167:8000/cockpit';
-
 // GET
 
 export const apiGet = async (endpoint) => {

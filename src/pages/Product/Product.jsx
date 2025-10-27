@@ -49,13 +49,13 @@ const Product = () => {
         getProducts();
     }, []);
 
-    const handleBuyNow = () => {
-        if (!token) {
-            snackbar("Login first to buy", "error");
-            return;
-        }
-        // Continue with buy logic...
-    };
+    // const handleBuyNow = () => {
+    //     if (!token) {
+    //         snackbar("Login first to buy", "error");
+    //         return;
+    //     }
+    //     // Continue with buy logic...
+    // };
 
     const { addToCart } = useCart();
 
@@ -145,12 +145,12 @@ const Product = () => {
                                 </span>
                             </div>
                             <div className="mt-4 flex gap-2 w-full">
-                                <button
+                                {/* <button
                                     onClick={handleBuyNow}
                                     className="bg-orange-500 hover:bg-orange-600  text-white text-sm px-3 py-2 rounded flex-1"
                                 >
                                     Buy Now
-                                </button>
+                                </button> */}
                                 <button
                                     onClick={() => handleAddToCart(product)}
                                     className="bg-orange-500 hover:bg-orange-600 text-white text-sm px-3 py-2 rounded flex-1"

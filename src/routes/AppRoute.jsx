@@ -5,6 +5,8 @@ import Product from '../pages/Product/Product';
 import Cart from '../pages/Cart/Cart';
 import Profile from '../pages/Profile/Profile';
 import Order from '../pages/Order/Order';
+import About from '../pages/About/About';
+import Contact from '../pages/Contact/Contact';
 
 const AppRoute = () => {
 
@@ -25,6 +27,8 @@ const AppRoute = () => {
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/order" element={<Order />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
             </Routes>
         </BrowserRouter>
     );

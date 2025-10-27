@@ -47,7 +47,7 @@ const Home = () => {
 
             {/* Explore Products Carousel */}
             <div className="relative w-full overflow-hidden h-[300px]">
-                {/* Slide container */}
+
                 <div
                     className="flex transition-transform duration-500 ease-in-out "
                     style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -62,14 +62,14 @@ const Home = () => {
                     ))}
                 </div>
 
-                {/* Explore button */}
+
                 <div className="absolute inset-0 flex items-center justify-center z-10">
                     <button className="bg-orange-500 text-white px-6 py-2 rounded font-semibold">
                         Explore Products
                     </button>
                 </div>
 
-                {/* Left arrow */}
+
                 <button
                     onClick={prevSlide}
                     className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow z-20 cursor-pointer"
@@ -77,7 +77,6 @@ const Home = () => {
                     <FaArrowLeft />
                 </button>
 
-                {/* Right arrow */}
                 <button
                     onClick={nextSlide}
                     className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow z-20 cursor-pointer"
@@ -114,7 +113,6 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Testimonials */}
             {/* Testimonials */}
             <section className="py-8 px-4">
                 <h2 className="text-xl font-semibold mb-4">Testimonials</h2>

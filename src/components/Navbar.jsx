@@ -65,13 +65,13 @@ const Navbar = () => {
                         </div>
 
                         <div className="absolute hidden group-hover:block bg-black text-white space-y-2 p-3 rounded-lg mt-2 w-56 z-20">
-                            <Link to="/products/interior" className="block hover:underline">Interior</Link>
-                            <Link to="/products/exterior" className="block hover:underline">Exterior</Link>
-                            <Link to="/products/detailing-tools" className="block hover:underline">Detailing Tools</Link>
-                            <Link to="/products/paint-protection" className="block hover:underline">Paint Protection</Link>
+                            <Link to="/products" className="block hover:underline">Interior</Link>
+                            <Link to="/products" className="block hover:underline">Exterior</Link>
+                            <Link to="/products" className="block hover:underline">Detailing Tools</Link>
+                            <Link to="/products" className="block hover:underline">Paint Protection</Link>
                         </div>
                     </div>
-                    <Link to="/about" className="text-lg">About</Link>
+                    <Link to="/about" className="text-lg" >About</Link>
                     <Link to="/contact" className="text-lg">Contact</Link>
                 </div>
 
@@ -80,7 +80,9 @@ const Navbar = () => {
                     {
                         token ? (
                             <div className="flex items-center space-x-2 cursor-pointer" onClick={() => navigate('/profile')}>
-
+                                <div className="w-9 h-9 flex items-center justify-center rounded-full bg-orange-600 text-white font-semibold uppercase">
+                                    {user?.username?.[0] || "U"}
+                                </div>
                                 <div className="text-sm">{`welcome ${user.username}!`}</div>
                             </div>
                         ) : (
@@ -114,14 +116,8 @@ const Navbar = () => {
                     <Link to="/about" className="block">About</Link>
                     <Link to="/contact" className="block">Contact</Link>
 
-                    <div className="relative group">
-                        <button className="block w-full text-left">Products</button>
-                        <div className="absolute hidden group-hover:block bg-black text-white space-y-2 p-3 rounded-lg mt-2 w-full">
-                            <Link to="/products/interior" className="block">Interior</Link>
-                            <Link to="/products/exterior" className="block">Exterior</Link>
-                            <Link to="/products/detailing-tools" className="block">Detailing Tools</Link>
-                            <Link to="/products/paint-protection" className="block">Paint Protection</Link>
-                        </div>
+                    <div className="relative group ">
+                        <button className="block w-full text-left cursor-pointer" onClick={() => navigate('/products')}>Products</button>
                     </div>
                 </div>
             )}
