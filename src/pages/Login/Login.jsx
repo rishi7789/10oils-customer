@@ -12,12 +12,12 @@ const Login = () => {
     const { login } = useAuth();
     const navigate = useNavigate();
 
-    // --- Sign In State ---
+    // sign in state
     const [signInData, setSignInData] = useState({ email: "", password: "" });
     const [signInErrors, setSignInErrors] = useState({});
     const [showSignInPassword, setShowSignInPassword] = useState(false);
 
-    // --- Sign Up State ---
+    // signup state
     const [signUpData, setSignUpData] = useState({
         username: "",
         email: "",
@@ -28,7 +28,7 @@ const Login = () => {
     const [signUpErrors, setSignUpErrors] = useState({});
     const [showSignUpPassword, setShowSignUpPassword] = useState(false);
 
-    // ---------------- TAB TOGGLE ----------------
+    //tab toggle
     const handleTabSwitch = (tab) => {
         setActiveTab(tab);
         // Reset all fields and errors
@@ -46,7 +46,7 @@ const Login = () => {
         setShowSignUpPassword(false);
     };
 
-    // ---------------- HANDLE CHANGES ----------------
+
     const handleSignInChange = (e) => {
         setSignInData({ ...signInData, [e.target.name]: e.target.value });
     };
@@ -55,7 +55,6 @@ const Login = () => {
         setSignUpData({ ...signUpData, [e.target.name]: e.target.value });
     };
 
-    // ---------------- VALIDATION ----------------
     const validateSignIn = () => {
         const errors = {};
         if (!signInData.email) errors.email = "Email is required";
@@ -77,7 +76,6 @@ const Login = () => {
         return Object.keys(errors).length === 0;
     };
 
-    // ---------------- SUBMIT HANDLERS ----------------
     const handleSignInSubmit = async (e) => {
         e.preventDefault();
         if (!validateSignIn()) return;
@@ -166,7 +164,7 @@ const Login = () => {
                         </button>
                     </div>
 
-                    {/* SIGN IN FORM */}
+                    {/* sign in */}
                     {activeTab === "signin" && (
                         <form onSubmit={handleSignInSubmit} className="space-y-4">
                             <div>
@@ -212,7 +210,7 @@ const Login = () => {
                         </form>
                     )}
 
-                    {/* SIGN UP FORM */}
+                    {/* sign up */}
                     {activeTab === "signup" && (
                         <form onSubmit={handleSignUpSubmit} className="space-y-4">
                             <div>
