@@ -19,7 +19,7 @@ const AppRoute = () => {
 
 
     return (
-        <BrowserRouter>
+        <BrowserRouter basename="/10oils-customer/">
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
